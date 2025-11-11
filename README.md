@@ -88,5 +88,13 @@ check out report.ipynb for:
 * optimasation : Feature Engineering, Improvement of Model Structure, Optimizer, Model Compression
 * Hyperparameter Tuning
 
+--
+
+## SD/experiments
+you can use it just confirmed you're in this file
+```bash
+python hyperparameter_search.py
+```
+
 
 
