@@ -1,0 +1,28 @@
+name: Weekly Documentation Review
+
+on:
+  schedule:
+    # Runs every Monday at 9 AM UTC
+    - cron: '0 9 * * 1'
+  workflow_dispatch:  # Allows manual trigger
+
+jobs:
+  update-timestamp:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Update last review date
+      run: |
+        echo "## Last Review" > LAST_REVIEW.md
+        echo "Documentation last reviewed: $(date)" >> LAST_REVIEW.md
+        cat LAST_REVIEW.md
+
+    - name: Check documentation age
+      run: |
+        echo "Checking when files were last modified..."
+        find . -name "*.md" -type f -exec sh -c '
+          echo "File: $1"
+          echo "Last modified: $(stat -c %y "$1" 2>/dev/null || stat -f %Sm "$1")"
+        ' sh {} \;
