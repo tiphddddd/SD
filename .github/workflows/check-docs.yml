@@ -1,0 +1,31 @@
+name: Documentation Check
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  check-files:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Check README exists
+      run: |
+        if [ ! -f README.md ]; then
+          echo "❌ README.md is missing!"
+          exit 1
+        fi
+        echo "✅ README.md exists"
+
+    - name: Check README not empty
+      run: |
+        if [ ! -s README.md ]; then
+          echo "❌ README.md is empty!"
+          exit 1
+        fi
+        echo "✅ README.md has content"
+        echo "File size: $(wc -c < README.md) bytes"
