@@ -11,13 +11,6 @@ def _as_float_01(x_np: np.ndarray) -> torch.Tensor:
         x = x / 255.0
     return x
 
-def _labels_1d(y_np: np.ndarray) -> torch.Tensor:
-    """
-    Converts a NumPy label array to a 1D Long Tensor.
-    """
-    y = np.asarray(y_np).reshape(-1).astype(np.int64, copy=False)
-    return torch.from_numpy(y)
-
 def _l2_per_sample(x: torch.Tensor, eps: float = 1e-6) -> torch.Tensor:
     """
     Applies L2 normalization to each sample in the batch.
