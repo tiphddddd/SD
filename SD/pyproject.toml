@@ -18,7 +18,7 @@ dependencies = [
     "numpy",
     "jupyterlab",
     "torch",
-    "pustil",
+    "psutil",
     # 你的其他核心依赖...
 ]
 
