@@ -1,10 +1,7 @@
-dependencies = [
-    "pandas",
-    "matplotlib",
-    "scikit-learn",
-    "numpy",
-    "jupyterlab",
-    "torch",
-    "pustil",
-    #onther dependencies
-]
+pandas
+matplotlib
+scikit-learn
+numpy
+jupyterlab
+torch
+psutil
