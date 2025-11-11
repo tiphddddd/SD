@@ -1,3 +1,4 @@
+![Documentation Check](https://github.com/tiphddddd/SD/actions/workflows/check-docs.yml/badge.svg)
 # 1 Minute Permuted MNIST
  
 ## 1.Competition Overview
