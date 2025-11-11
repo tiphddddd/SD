@@ -1,0 +1,40 @@
+name: Format Markdown
+
+on:
+  push:
+    paths:
+      - '**.md'
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Count Markdown files
+      run: |
+        count=$(find . -name "*.md" -type f | wc -l)
+        echo "Found $count Markdown file(s)"
+
+    - name: Check Markdown structure
+      run: |
+        echo "Checking Markdown files for basic structure..."
+        for file in $(find . -name "*.md" -type f); do
+          echo "Checking $file"
+          if grep -q "^# " "$file"; then
+            echo "$file has a main heading"
+          else
+            echo "$file missing main heading"
+          fi
+        done
+
+    - name: Generate table of contents
+      run: |
+        echo "## Repository Structure" > TOC.md
+        echo "" >> TOC.md
+        echo "### Markdown Files:" >> TOC.md
+        find . -name "*.md" -type f | while read file; do
+          echo "- $file" >> TOC.md
+        done
+        cat TOC.md
